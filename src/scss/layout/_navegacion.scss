@@ -41,6 +41,7 @@
     visibility: hidden;
     opacity: 0;
     height: 0;
+    margin-bottom: 0;
     transition: visibility .3s ease-in-out, opacity 0.5s linear, height 0.5s linear;
 
     @include tablet {
@@ -48,6 +49,7 @@
         justify-content: center;
         opacity: 1;
         visibility: visible;
+        margin-bottom: 2rem;
     }
 
     a {
