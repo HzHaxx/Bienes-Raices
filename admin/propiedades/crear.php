@@ -26,7 +26,18 @@
                 <textarea id="descripcion"></textarea>
             </fieldset>
 
+            <fieldset>
+                <legend>Información Propiedad</legend>
 
+                <label for="habitaciones">Habitaciones</label>
+                <input type="number" id="habitaciones" placeholder="Ej: 3" min="1" max="9">
+
+                <label for="wc">Baños</label>
+                <input type="number" id="wc" placeholder="Ej: 2" min="1" max="9">
+
+                <label for="estacionamiento">Estacionamiento</label>
+                <input type="number" id="estacionamiento" placeholder="Ej: 1" min="1" max="9">
+            </fieldset>
 
         </form>
     </main>
