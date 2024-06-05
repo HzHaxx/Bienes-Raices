@@ -39,6 +39,14 @@
                 <input type="number" id="estacionamiento" placeholder="Ej: 1" min="1" max="9">
             </fieldset>
 
+            <fieldset>
+                <legend>Vendedor</legend>
+
+                <select>
+                    <option value="1">Miguel</option>
+                    <option value="2">Karen</option>
+                </select>
+            </fieldset>
         </form>
     </main>
 
