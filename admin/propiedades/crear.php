@@ -47,6 +47,8 @@
                     <option value="2">Karen</option>
                 </select>
             </fieldset>
+
+            <input type="submit" value="Crear Propiedad" class="boton boton-verde">
         </form>
     </main>
 
