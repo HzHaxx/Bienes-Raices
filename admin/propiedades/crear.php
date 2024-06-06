@@ -13,12 +13,12 @@
 
         <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form action="" class="formulario">
+        <form action="/bienesraices/admin/propiedades/crear.php" method="POST" class="formulario" >
             <fieldset>
                 <legend>Información General</legend>
 
                 <label for="titulo">Titulo</label>
-                <input type="text" id="titulo" placeholder="Titulo Propiedad">
+                <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad">
 
                 <label for="precio">Precio</label>
                 <input type="number" id="precio" placeholder="Precio Propiedad">
