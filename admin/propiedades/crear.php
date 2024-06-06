@@ -3,6 +3,100 @@
     require '../../includes/config/database.php';
     $db = conectarDB();
 
+    // Arreglo con mensajes de errores
+    $errores = [];
+
+    // Ejecutar el código después de que el usuario envía el formulario
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
+
+        // echo "<pre>";
+        // var_dump($_FILES);
+        // echo "</pre>";
+
+        $titulo = $_POST['titulo'];
+        $precio = $_POST['precio'];
+        $descripcion = $_POST['descripcion'];
+        $habitaciones = $_POST['habitaciones'];
+        $wc = $_POST['wc'];
+        $estacionamiento = $_POST['estacionamiento'];
+        $vendedorId = $_POST['vendedor'];
+
+        // echo "<pre>";
+        // var_dump($titulo);
+        // echo "</pre>";
+
+        // Validar que los campos no estén vacíos
+        if(!$titulo) {
+            $errores[] = "Debes añadir un título";
+        }
+
+        if(!$precio) {
+            $errores[] = "Debes añadir un precio";
+        }
+
+        if(strlen($descripcion) < 50) {
+            $errores[] = "La descripción es obligatoria y debe tener al menos 50 caracteres";
+        }
+
+        if(!$habitaciones) {
+            $errores[] = "Debes añadir el número de habitaciones";
+        }
+
+        if(!$wc) {
+            $errores[] = "Debes añadir el número de baños";
+        }
+
+        if(!$estacionamiento) {
+            $errores[] = "Debes añadir el número de estacionamientos";
+        }
+
+        if(!$vendedorId) {
+            $errores[] = "Debes añadir el vendedor";
+        }
+
+        // echo "<pre>";
+        // var_dump($errores);
+        // echo "</pre>";
+
+        // Subida de archivos
+        // Crear una carpeta
+        $carpetaImagenes = '../../imagenes/';
+
+        if(!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        // echo "<pre>";
+        // var_dump($_FILES);
+        // echo "</pre>";
+
+        // Subir una imagen
+        $nombreImagen = '';
+
+        if($_FILES['imagen']['name']) {
+            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+            // Subir la imagen
+            move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $nombreImagen);
+        }
+
+        if(empty($errores)) {
+            // Insertar en la base de datos
+            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedorId')";
+
+            // echo $query;
+
+            $resultado = mysqli_query($db, $query);
+
+            if($resultado) {
+                echo "Insertado correctamente";
+            }
+        }
+    }
+
 
     require '../../includes/funciones.php';
     incluirTemplate('header');
@@ -10,6 +104,12 @@
 
     <main class="contenedor">
         <h1>Crear</h1>
+
+        <?php foreach($errores as $error): ?>
+            <div class="alerta error">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
 
         <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
 
@@ -47,6 +147,7 @@
                 <legend>Vendedor</legend>
 
                 <select name="vendedor">
+                    <option value="" disabled selected>-- Seleccione --</option>
                     <option value="1">Miguel</option>
                     <option value="2">Karen</option>
                 </select>
