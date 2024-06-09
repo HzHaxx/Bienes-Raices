@@ -3,6 +3,10 @@
     require '../../includes/config/database.php';
     $db = conectarDB();
 
+    // Consultar para obtener los vendedores
+    $query = "SELECT * FROM vendedores";
+    $resultado = mysqli_query($db, $query);
+
     // Arreglo con mensajes de errores
     $errores = [];
 
