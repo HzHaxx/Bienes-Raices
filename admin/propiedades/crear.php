@@ -90,7 +90,7 @@
 
             if($resultado) {
                 // Redireccionar al usuario
-                header('Location: /bienesraices/admin');
+                header('Location: /bienesraices/admin/index.php');
             }
         }
     }
