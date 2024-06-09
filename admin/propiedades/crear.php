@@ -34,7 +34,8 @@
         $habitaciones = $_POST['habitaciones'];
         $wc = $_POST['wc'];
         $estacionamiento = $_POST['estacionamiento'];
-        $vendedorId = $_POST['vendedor'];
+        $vendedorId = $_POST['vendedor']; 
+        $creado = date('Y/m/d');
 
         // echo "<pre>";
         // var_dump($titulo);
