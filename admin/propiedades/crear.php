@@ -105,7 +105,8 @@
             $resultado = mysqli_query($db, $query);
 
             if($resultado) {
-                echo "Insertado correctamente";
+                // Redireccionar al usuario
+                header('Location: /bienesraices/admin');
             }
         }
     }
