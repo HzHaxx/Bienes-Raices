@@ -115,16 +115,16 @@
             <fieldset>
                 <legend>Información General</legend>
 
-                <label for="titulo">Titulo</label>
+                <label for="titulo">Titulo:</label>
                 <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo $titulo; ?>" >
 
-                <label for="precio">Precio</label>
+                <label for="precio">Precio:</label>
                 <input type="number" id="precio" name="precio" placeholder="Precio Propiedad" value="<?php echo $precio; ?>">
 
-                <label for="imagen">Imagen</label>
-                <input type="file" id="imagen" accept="image/jpeg, image/png">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
-                <label for="descripcion">Descripción</label>
+                <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
             </fieldset>
 
