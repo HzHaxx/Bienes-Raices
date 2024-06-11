@@ -79,6 +79,17 @@
             $errores[] = "Debes añadir el vendedor";
         }
 
+        if(!$imagen['name'] || $imagen['error']) {
+            $errores[] = "Debes añadir una imagen";
+        }
+
+        // Validar por tamaño (1mb máximo)
+        $medida = 1000 * 1000;
+
+        if($imagen['size'] > $medida) {
+            $errores[] = "La imagen es muy pesada";
+        }
+
         // echo "<pre>";
         // var_dump($errores);
         // echo "</pre>";
