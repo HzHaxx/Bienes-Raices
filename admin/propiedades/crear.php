@@ -125,7 +125,7 @@
 
         <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form action="/bienesraices/admin/propiedades/crear.php" method="POST" class="formulario" >
+        <form action="/bienesraices/admin/propiedades/crear.php" method="POST" class="formulario" enctype="multipart/form-data">
             <fieldset>
                 <legend>Información General</legend>
 
