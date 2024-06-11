@@ -47,6 +47,9 @@
         // var_dump($titulo);
         // echo "</pre>";
 
+        // Asignar file hacia una variable
+        $imagen = $_FILES['imagen'];
+
         // Validar que los campos no estén vacíos
         if(!$titulo) {
             $errores[] = "Debes añadir un título";
