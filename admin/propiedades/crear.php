@@ -104,6 +104,9 @@
                 mkdir($carpetaImagenes);
             }
 
+            // Generar un nombre único
+            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
             // Subir la imagen
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $imagen['name']);
 
