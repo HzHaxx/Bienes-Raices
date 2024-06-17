@@ -17,6 +17,11 @@
     require '../../includes/config/database.php';
     $db = conectarDB();
 
+    // Obtener los datos de la propiedad 
+    $query = "SELECT * FROM propiedades WHERE id = ${id}";
+    $resultado = mysqli_query($db, $query);
+    $propiedad = mysqli_fetch_assoc($resultado);
+
     // Consultar para obtener los vendedores
     $query = "SELECT * FROM vendedores";
     $resultado = mysqli_query($db, $query);
