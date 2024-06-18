@@ -93,10 +93,6 @@
             $errores[] = "Debes añadir el vendedor";
         }
 
-        if(!$imagen['name'] || $imagen['error']) {
-            $errores[] = "Debes añadir una imagen";
-        }
-
         // Validar por tamaño (1mb máximo)
         $medida = 1000 * 1000;
 
