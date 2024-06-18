@@ -11,7 +11,7 @@
     $resultadoConsulta = mysqli_query($db, $query);
 
     // Muestra mensaje condicional
-    $resultado = $_GET['mensaje'] ?? null;
+    $resultado = $_GET['resultado'] ?? null;
 
     // Incluye un tamplate
     require '../includes/funciones.php';
