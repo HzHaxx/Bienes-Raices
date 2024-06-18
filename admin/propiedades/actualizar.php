@@ -129,7 +129,7 @@
 
             if($resultado) {
                 // Redireccionar al usuario
-                header('Location: /bienesraices/admin/index.php?resultado=1');
+                header('Location: /bienesraices/admin/index.php?resultado=2');
             }
         }
     }
@@ -150,7 +150,7 @@
 
         <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form action="/bienesraices/admin/propiedades/crear.php" method="POST" class="formulario" enctype="multipart/form-data">
+        <form method="POST" class="formulario" enctype="multipart/form-data">
             <fieldset>
                 <legend>Información General</legend>
 
