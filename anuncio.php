@@ -34,32 +34,23 @@
         <img loading="lazy" src="/bienesraices/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la propiedad">
 
         <div class="resumen-propiedad">
-            <p class="precio"> $3,000,000</p>
-
+            <p class="precio">$<?php echo $propiedad['precio']; ?></p>
             <ul class="iconos-caracteristicas">
                 <li>
-                    <img class="icono" loading="lazy" src="build/img/icono_wc.svg" alt="icono wc">
-                    <p>3</p>
+                    <img class="icono" loading="lazy" src="build/img/icono_wc.svg" alt="Icono WC">
+                    <p><?php echo $propiedad['wc']; ?></p>
                 </li>
                 <li>
-                    <img class="icono" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="icono estacionamiento">
-                    <p>3</p>
+                    <img class="icono" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="Icono Estacionamiento">
+                    <p><?php echo $propiedad['estacionamiento']; ?></p>
                 </li>
                 <li>
-                    <img class="icono" loading="lazy" src="build/img/icono_dormitorio.svg" alt="icono habitaciones">
-                    <p>4</p>
+                    <img class="icono" loading="lazy" src="build/img/icono_dormitorio.svg" alt="Icono Habitaciones">
+                    <p><?php echo $propiedad['habitaciones']; ?></p>
                 </li>
             </ul>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quod sunt animi. Excepturi tempora
-                officiis eaque ipsum. Cupiditate debitis veritatis vel, suscipit amet, impedit sequi laboriosam
-                ipsa, ut quod explicabo?. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi officiis
-                eum ratione non dignissimos assumenda ipsum facere error nulla quod laboriosam veritatis possimus
-                corrupti quam corporis deleniti velit, animi autem.</p>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, dolores quam? Rem error, esse corporis
-                minima nesciunt placeat ullam quis deserunt ad itaque maiores voluptatem corrupti, quam tempora
-                recusandae. Laboriosam?</p>
+            <p><?php echo $propiedad['descripcion']; ?></p>
         </div>
     </main>
 
