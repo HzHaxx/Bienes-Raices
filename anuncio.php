@@ -1,4 +1,28 @@
-<?php
+<?php 
+
+    $id = $_GET['id']; 
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if (!$id) {
+        header('Location: /bienesraices/index.php');
+    }
+
+    // Importar la conexión
+    require 'includes/config/database.php';
+    $db = conectarDB();
+
+    // Consultar
+    $query = "SELECT * FROM propiedades WHERE id = {$id}";
+
+    // Leer los resultados
+    $resultado = mysqli_query($db, $query);
+
+    if (!$resultado->num_rows) {
+        header('Location: /bienesraices/index.php');
+    }
+
+    $propiedad = mysqli_fetch_assoc($resultado);
+
     require 'includes/funciones.php';
 
     incluirTemplate('header');
