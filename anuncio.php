@@ -55,5 +55,8 @@
     </main>
 
 <?php
+    // Cerrar la conexión
+    mysqli_close($db);
+
     incluirTemplate('footer');
 ?>
