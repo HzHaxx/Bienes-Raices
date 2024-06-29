@@ -26,7 +26,13 @@
     <main class="contenedor seccion contenido-centrado">
         <h1>Iniciar Sesión</h1>
 
-        <form class="formulario" method="POST" action="">
+        <?php foreach($errores as $error): ?>
+            <div class="alerta error">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
+
+        <form class="formulario" method="POST" novalidate>
             <fieldset>
                 <legend>Email y Password</legend>
 
