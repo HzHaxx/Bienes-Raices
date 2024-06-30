@@ -22,6 +22,12 @@
             $query = "SELECT * FROM usuarios WHERE email = '{$email}'";
             $resultado = mysqli_query($db, $query);
 
+            if ($resultado->num_rows) {
+                // Revisar si el password es correcto
+                $usuario = mysqli_fetch_assoc($resultado);
+
+                $auth = password_verify($password, $usuario['password']);
+
     }
 
     // Incluye el header
