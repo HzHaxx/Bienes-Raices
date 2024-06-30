@@ -28,6 +28,21 @@
 
                 $auth = password_verify($password, $usuario['password']);
 
+                if ($auth) {
+                    // El usuario está autenticado
+                    session_start();
+
+                    $_SESSION['usuario'] = $usuario['email'];
+                    $_SESSION['login'] = true;
+
+                    header('Location: /admin');
+                } else {
+                    $errores[] = "El password es incorrecto";
+                }
+            } else {
+                $errores[] = "El usuario no existe";
+            }
+        }
     }
 
     // Incluye el header
