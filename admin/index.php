@@ -1,8 +1,7 @@
 <?php
 
-    session_start();
-
-    $auth = $_SESSION['login'];
+    require '../includes/funciones.php';
+    $auth = estaAutenticado();
 
     if (!$auth) {
         header('Location: /bienesraices/index.php');
@@ -44,7 +43,6 @@
     }
 
     // Incluye un tamplate
-    require '../includes/funciones.php';
 
     incluirTemplate('header');
 ?>
