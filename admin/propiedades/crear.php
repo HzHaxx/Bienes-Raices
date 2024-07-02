@@ -5,6 +5,13 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+    require '../../includes/funciones.php';
+    $auth = estaAutenticado();
+
+    if (!$auth) {
+        header('Location: /bienesraices/index.php');
+    }
+
     // Base de datos
     require '../../includes/config/database.php';
     $db = conectarDB();
@@ -124,8 +131,6 @@
         }
     }
 
-
-    require '../../includes/funciones.php';
     incluirTemplate('header');
 ?>
 
