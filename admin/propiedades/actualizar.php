@@ -5,6 +5,13 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+    require '../../includes/funciones.php';
+    $auth = estaAutenticado();
+
+    if (!$auth) {
+        header('Location: /bienesraices/index.php');
+    }
+
     // Validar la URL por ID válido
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -131,7 +138,7 @@
 
 
             // Insertar en la base de datos
-            $query = "UPDATE propiedades SET titulo = '${titulo}', precio = '${precio}', imagen = '${nombreImagen}', descripcion = '${descripcion}', habitaciones = ${habitaciones}, wc = ${wc}, estacionamiento = ${estacionamiento}, vendedorId = ${vendedorId} WHERE id = ${id}";
+            $query = "UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, estacionamiento = {$estacionamiento}, vendedorId = {$vendedorId} WHERE id = {$id}";
 
             // echo $query;
 
@@ -145,7 +152,6 @@
     }
 
 
-    require '../../includes/funciones.php';
     incluirTemplate('header');
 ?>
 
