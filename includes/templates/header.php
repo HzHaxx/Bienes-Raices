@@ -37,6 +37,9 @@
                         <a href="anuncios.php">Anuncios</a>
                         <a href="blog.php">Blog</a>
                         <a href="contacto.php">Contacto</a>
+                        <?php if ($auth): ?>
+                            <a href="/bienesraices/cerrar-sesion.php">Cerrar Sesión</a>
+                        <?php endif; ?>
                     </nav>
                 </div>
             </div> <!--.barra-->
