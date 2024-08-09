@@ -4,7 +4,7 @@
     $auth = estaAutenticado();
 
     if (!$auth) {
-        header('Location: /bienesraices/index.php');
+        header('Location: index.php');
     }
 
     // Importa la conexión a la base de datos
@@ -37,7 +37,7 @@
             $resultado = mysqli_query($db, $query);
 
             if ($resultado) {
-                header('location: /bienesraices/admin/index.php?resultado=3');
+                header('location: /admin/index.php?resultado=3');
             }
         }
     }
@@ -57,7 +57,7 @@
             <p class="alerta exito">Anuncio Eliminado Correctamente</p>
         <?php endif; ?>
 
-        <a href="/bienesraices/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+        <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
         <table class="propiedades">
             <thead>
@@ -75,7 +75,7 @@
                     <tr>
                         <td><?php echo $propiedad['id']; ?></td>
                         <td><?php echo $propiedad['titulo']; ?></td>
-                        <td> <img src="/bienesraices/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la propiedad" class="imagen-tabla"> </td>
+                        <td> <img src="/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la propiedad" class="imagen-tabla"> </td>
                         <td> $<?php echo $propiedad['precio']; ?></td>
                         <td>
                             <form method="POST" class="w-100">
@@ -84,7 +84,7 @@
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>
 
-                            <a href="/bienesraices/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
+                            <a href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
