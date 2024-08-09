@@ -26,16 +26,17 @@
                 // Revisar si el password es correcto
                 $usuario = mysqli_fetch_assoc($resultado);
 
-                $auth = password_verify($password, $usuario['password']);
+                $auth = password_verify($password, password_hash($usuario['password'], PASSWORD_DEFAULT));
 
                 if ($auth) {
                     // El usuario está autenticado
                     session_start();
 
                     $_SESSION['usuario'] = $usuario['email'];
+                    $_SESSION['id'] = $usuario['id'];
                     $_SESSION['login'] = true;
 
-                    header('Location: /bienesraices/admin/index.php');
+                    header('Location: /admin/index.php');
                 } else {
                     $errores[] = "El password es incorrecto";
                 }
