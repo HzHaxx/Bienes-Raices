@@ -6,26 +6,44 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function darkMode() {
-
     const prefiereDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+    const botonDarkMode = document.querySelector('.dark-mode-boton');
 
-    if (prefiereDarkMode.matches) {
-        document.body.classList.add('dark-mode');
+    // Verificar si hay una preferencia guardada en localStorage
+    const darkModeStorage = localStorage.getItem('dark-mode');
+
+    if (darkModeStorage) {
+        if (darkModeStorage === 'enabled') {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
     } else {
-        document.body.classList.remove('dark-mode');
-    }
-
-    prefiereDarkMode.addEventListener('change', function() {
+        // Si no hay preferencia guardada, usar la preferencia del sistema
         if (prefiereDarkMode.matches) {
             document.body.classList.add('dark-mode');
         } else {
             document.body.classList.remove('dark-mode');
         }
+    }
+
+    prefiereDarkMode.addEventListener('change', function() {
+        if (prefiereDarkMode.matches) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('dark-mode', 'disabled');
+        }
     });
 
-    const botonDarkMode = document.querySelector('.dark-mode-boton');
     botonDarkMode.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+        }
     });
 }
 
