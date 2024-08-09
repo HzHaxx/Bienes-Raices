@@ -9,7 +9,7 @@
     $auth = estaAutenticado();
 
     if (!$auth) {
-        header('Location: /bienesraices/index.php');
+        header('Location: index.php');
     }
 
     // Validar la URL por ID válido
@@ -17,7 +17,7 @@
     $id = filter_var($id, FILTER_VALIDATE_INT);
  
     if(!$id) {
-        header('Location: /bienesraices/admin/index.php');
+        header('Location: admin/index.php');
     }
 
     // Base de datos
@@ -25,7 +25,7 @@
     $db = conectarDB();
 
     // Obtener los datos de la propiedad 
-    $query = "SELECT * FROM propiedades WHERE id = ${id}";
+    $query = "SELECT * FROM propiedades WHERE id = {$id}";
     $resultado = mysqli_query($db, $query);
     $propiedad = mysqli_fetch_assoc($resultado);
 
@@ -146,7 +146,7 @@
 
             if($resultado) {
                 // Redireccionar al usuario
-                header('Location: /bienesraices/admin/index.php?resultado=2');
+                header('Location: /admin/index.php?resultado=2');
             }
         }
     }
@@ -164,7 +164,7 @@
             </div>
         <?php endforeach; ?>
 
-        <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
+        <a href="/admin/index.php" class="boton boton-verde">Volver</a>
 
         <form method="POST" class="formulario" enctype="multipart/form-data">
             <fieldset>
@@ -179,7 +179,7 @@
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
                 
-                <img src="/bienesraices/imagenes/<?php echo $imagenPropiedad; ?>" class="imagen-small">
+                <img src="/imagenes/<?php echo $imagenPropiedad; ?>" class="imagen-small">
 
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
