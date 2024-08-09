@@ -9,7 +9,7 @@
     $auth = estaAutenticado();
 
     if (!$auth) {
-        header('Location: /bienesraices/index.php');
+        header('Location: index.php');
     }
 
     // Base de datos
@@ -126,7 +126,7 @@
 
             if($resultado) {
                 // Redireccionar al usuario
-                header('Location: /bienesraices/admin/index.php?resultado=1');
+                header('Location: /admin/index.php?resultado=1');
             }
         }
     }
@@ -143,9 +143,9 @@
             </div>
         <?php endforeach; ?>
 
-        <a href="/bienesraices/admin/index.php" class="boton boton-verde">Volver</a>
+        <a href="/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form action="/bienesraices/admin/propiedades/crear.php" method="POST" class="formulario" enctype="multipart/form-data">
+        <form action="/admin/propiedades/crear.php" method="POST" class="formulario" enctype="multipart/form-data">
             <fieldset>
                 <legend>Información General</legend>
 
