@@ -5,15 +5,12 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-    require '../../includes/funciones.php';
-    $auth = estaAutenticado();
+    require '../../includes/app.php';
 
-    if (!$auth) {
-        header('Location: index.php');
-    }
+    use App\Propiedad;
 
-    // Base de datos
-    require '../../includes/config/database.php';
+    estaAutenticado();
+
     $db = conectarDB();
 
     // Consultar para obtener los vendedores
