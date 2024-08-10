@@ -6,11 +6,7 @@
 // error_reporting(E_ALL);
 
     require '../../includes/funciones.php';
-    $auth = estaAutenticado();
-
-    if (!$auth) {
-        header('Location: index.php');
-    }
+    estaAutenticado();
 
     // Validar la URL por ID válido
     $id = $_GET['id'];
