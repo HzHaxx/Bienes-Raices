@@ -2,7 +2,10 @@
 
 namespace App;
 
-class Propiedad {
+class Propiedad
+{
+    // Base de datos
+    protected static $db; // static para que no se duplique la conexión
 
     public $id;
     public $titulo;
@@ -15,7 +18,8 @@ class Propiedad {
     public $creado;
     public $vendedorId;
 
-    public function __construct($args = []) {
+    public function __construct($args = [])
+    {
         $this->id = $args['id'] ?? '';
         $this->titulo = $args['titulo'] ?? '';
         $this->precio = $args['precio'] ?? '';
@@ -26,6 +30,21 @@ class Propiedad {
         $this->estacionamiento = $args['estacionamiento'] ?? '';
         $this->creado = date('Y/m/d');
         $this->vendedorId = $args['vendedorId'] ?? '';
+    }
+
+    public function guardar()
+    {
+        // Insertar en la base de datos
+        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedorId')";
+
+        $resultado = self::$db->query($query);
+        debuguear($resultado);
+
+    }
+
+    public static function setDB($database)
+    {
+        self::$db = $database;
     }
 
 }
