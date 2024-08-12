@@ -48,9 +48,25 @@ class Propiedad
 
     }
 
-    public static function setDB($database)
+    // Identifica y une los atributos de la clase con los valores de la base de datos
+    public function atributos()
     {
-        self::$db = $database;
+        $atributos = [];
+        foreach (self::$columnasDB as $columna) {
+            if ($columna === 'id') continue;
+            $atributos[$columna] = $this->$columna;
+        }
+        return $atributos;
+    }
+
+    public function sanitizarDatos()
+    {
+        $atributos = $this->atributos();
+        $sanitizado = [];
+        foreach ($atributos as $key => $value) {
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+        return $sanitizado;
     }
 
 }
