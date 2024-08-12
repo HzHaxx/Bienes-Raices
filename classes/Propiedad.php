@@ -40,6 +40,9 @@ class Propiedad
 
     public function guardar()
     {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarDatos();
+
         // Insertar en la base de datos
         $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->estacionamiento', '$this->creado', '$this->vendedorId')";
 
