@@ -6,6 +6,7 @@ class Propiedad
 {
     // Base de datos
     protected static $db; // static para que no se duplique la conexión
+    protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'estacionamiento', 'creado', 'vendedorId'];
 
     public $id;
     public $titulo;
