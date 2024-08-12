@@ -33,6 +33,11 @@ class Propiedad
         $this->vendedorId = $args['vendedorId'] ?? '';
     }
 
+    public static function setDB($database)
+    {
+        self::$db = $database;
+    }
+
     public function guardar()
     {
         // Insertar en la base de datos
