@@ -44,7 +44,7 @@ class Propiedad
     public function guardar()
     {
         // Sanitizar los datos
-        $atributos = $this->sanitizarDatos();
+        $atributos = $this->sanitizarAtributos();
 
         // Insertar en la base de datos
         $query = "INSERT INTO propiedades (";
@@ -54,8 +54,8 @@ class Propiedad
         $query .= "');";
 
         $resultado = self::$db->query($query);
-        debuguear($resultado);
-
+        
+        return $resultado;
     }
 
     // Identifica y une los atributos de la clase con los valores de la base de datos
@@ -69,7 +69,7 @@ class Propiedad
         return $atributos;
     }
 
-    public function sanitizarDatos()
+    public function sanitizarAtributos()
     {
         $atributos = $this->atributos();
         $sanitizado = [];
@@ -77,6 +77,20 @@ class Propiedad
             $sanitizado[$key] = self::$db->escape_string($value);
         }
         return $sanitizado;
+    }
+
+    // Subida de archivos
+    public function setImagen($imagen)
+    {
+        /* // Elimina la imagen previa
+        if (!is_null($this->id)) {
+            $this->borrarImagen();
+        } */
+
+        // Asignar al atributo de imagen el nombre de la imagen
+        if ($imagen) {
+            $this->imagen = $imagen;
+        }
     }
 
     // Validación
@@ -115,9 +129,9 @@ class Propiedad
             self::$errores[] = "Elige un vendedor";
         }
 
-        /* if (!$this->imagen) {
+        if (!$this->imagen) {
             self::$errores[] = "La imagen es obligatoria";
-        } */
+        }
 
         return self::$errores;
     }
