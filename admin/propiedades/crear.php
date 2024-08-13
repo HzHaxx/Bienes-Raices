@@ -8,6 +8,7 @@ error_reporting(E_ALL); */
     require '../../includes/app.php';
 
     use App\Propiedad;
+    use Intervention\Image\ImageManagerStatic as Image;
 
     estaAutenticado();
 
@@ -31,38 +32,38 @@ error_reporting(E_ALL); */
     // Ejecutar el código después de que el usuario envía el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+        // Crear una nueva instancia
         $propiedad = new Propiedad($_POST);
 
+        /** SUBIDA DE ARCHIVOS **/
+
+
+        // Generar un nombre único
+        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+        // Setear la imagen
+        // Realizar un resize a la imagen con intervention image
+        if ($_FILES['imagen']['tmp_name']) {
+            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }
+
+        // Validar
         $errores = $propiedad->validar();
 
         
         if(empty($errores)) {
-            
-            $propiedad->guardar();
-    
-            // Asignar file hacia una variable
-            $imagen = $_FILES['imagen'];
 
-            /** SUBIDA DE ARCHIVOS **/
-            // Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
-
-            if(!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes);
+            // Crear carpeta para subir imágenes
+            if(!is_dir(CARPETA_IMAGENES)) {
+                mkdir(CARPETA_IMAGENES);
             }
 
-            // Generar un nombre único
-            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+            // Guardar la imagen en el servidor
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-
-            // Insertar en la base de datos
-            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
-
-            // echo $query;
-
-            $resultado = mysqli_query($db, $query);
+            // Guardar en la base de datos
+            $resultado = $propiedad->guardar();
 
             if($resultado) {
                 // Redireccionar al usuario
