@@ -103,10 +103,6 @@
             $errores[] = "La imagen es muy pesada";
         }
 
-        // echo "<pre>";
-        // var_dump($errores);
-        // echo "</pre>";
-
         if(empty($errores)) {
 
             // Crear carpeta
