@@ -5,7 +5,9 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-    require '../../includes/funciones.php';
+    use App\Propiedad;
+
+    require '../../includes/app.php';
     estaAutenticado();
 
     // Validar la URL por ID válido
@@ -16,14 +18,8 @@
         header('Location: admin/index.php');
     }
 
-    // Base de datos
-    require '../../includes/config/database.php';
-    $db = conectarDB();
-
-    // Obtener los datos de la propiedad 
-    $query = "SELECT * FROM propiedades WHERE id = {$id}";
-    $resultado = mysqli_query($db, $query);
-    $propiedad = mysqli_fetch_assoc($resultado);
+    // Obtener los datos de la propiedad
+    $propiedad = Propiedad::find($id);
 
     // Consultar para obtener los vendedores
     $query = "SELECT * FROM vendedores";
