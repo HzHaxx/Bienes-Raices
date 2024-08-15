@@ -32,15 +32,6 @@
     // Arreglo con mensajes de errores
     $errores = [];
 
-    $titulo = $propiedad['titulo'];
-    $precio = $propiedad['precio'];
-    $descripcion = $propiedad['descripcion'];
-    $habitaciones = $propiedad['habitaciones'];
-    $wc = $propiedad['wc'];
-    $estacionamiento = $propiedad['estacionamiento'];
-    $vendedorId = $propiedad['vendedorId'];
-    $imagenPropiedad = $propiedad['imagen'];
-
     // Ejecutar el código después de que el usuario envía el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         // echo "<pre>";
