@@ -20,35 +20,40 @@ if (!$id) {
     exit;
 }
 
-    // Arreglo con mensajes de errores
-    $errores = [];
+// Obtener los datos de la propiedad
+$propiedad = Propiedad::find($id);
 
-    // Ejecutar el código después de que el usuario envía el formulario
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Consultar para obtener los vendedores
+$query = "SELECT * FROM vendedores";
+$resultado = mysqli_query($db, $query);
 
-        // Asignar los atributos
-        $args = $_POST['propiedad'];
+// Arreglo con mensajes de errores
+$errores = Propiedad::getErrores();
 
-        $propiedad->sincronizar($args);
+// Ejecutar el código después de que el usuario envía el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // Asignar file hacia una variable
-        $imagen = $_FILES['imagen'];
+    // Asignar los atributos
+    $args = $_POST['propiedad'];
 
     $propiedad->sincronizar($args);
 
-        if(!$estacionamiento) {
-            $errores[] = "Debes añadir el número de estacionamientos";
-        }
+    // Validación
+    $errores = $propiedad->validar();
 
-        if(!$vendedorId) {
-            $errores[] = "Debes añadir el vendedor";
-        }
+    // Subida de archivos
+    // Generar un nombre único
+    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-        // Validar por tamaño (1mb máximo)
-        $medida = 1000 * 1000;
+    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+        $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+        $propiedad->setImagen($nombreImagen);
+    }
 
-        if($imagen['size'] > $medida) {
-            $errores[] = "La imagen es muy pesada";
+    if (empty($errores)) {
+        // Almacenar la imagen
+        if (isset($image)) {
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
         }
 
         $propiedad->guardar();
