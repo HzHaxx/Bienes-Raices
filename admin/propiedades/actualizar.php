@@ -5,10 +5,11 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-    use App\Propiedad;
+use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
 
-    require '../../includes/app.php';
-    estaAutenticado();
+require '../../includes/app.php';
+estaAutenticado();
 
     // Validar la URL por ID válido
     $id = $_GET['id'];
@@ -114,29 +115,29 @@
             }
         }
     }
+}
 
-
-    incluirTemplate('header');
+incluirTemplate('header');
 ?>
 
-    <main class="contenedor">
-        <h1>Actualizar Propiedad</h1>
+<main class="contenedor">
+    <h1>Actualizar Propiedad</h1>
 
-        <?php foreach($errores as $error): ?>
-            <div class="alerta error">
-                <?php echo $error; ?>
-            </div>
-        <?php endforeach; ?>
+    <?php foreach ($errores as $error): ?>
+        <div class="alerta error">
+            <?php echo $error; ?>
+        </div>
+    <?php endforeach; ?>
 
-        <a href="/admin/index.php" class="boton boton-verde">Volver</a>
+    <a href="/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form method="POST" class="formulario" enctype="multipart/form-data">
-            <?php include '../../includes/templates/formulario_propiedades.php'; ?>
+    <form method="POST" class="formulario" enctype="multipart/form-data">
+        <?php include '../../includes/templates/formulario_propiedades.php'; ?>
 
-            <input type="submit" value="Actualizar Propiedad" class="boton boton-verde">
-        </form>
-    </main>
+        <input type="submit" value="Actualizar Propiedad" class="boton boton-verde">
+    </form>
+</main>
 
 <?php
-    incluirTemplate('footer');
+incluirTemplate('footer');
 ?>
