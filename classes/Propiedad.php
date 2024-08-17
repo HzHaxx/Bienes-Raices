@@ -54,7 +54,30 @@ class Propiedad
         $query .= "');";
 
         $resultado = self::$db->query($query);
-        
+
+        if ($resultado) {
+            header('Location: /admin?resultado=1');
+        }
+    }
+
+    public function actualizar()
+    {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributos();
+
+        $valores = [];
+        foreach ($atributos as $key => $value) {
+            $valores[] = "{$key} = '{$value}'";
+        }
+
+        // Actualizar en la base de datos
+        $query = "UPDATE propiedades SET ";
+        $query .= join(', ', $valores);
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1;";
+
+        $resultado = self::$db->query($query);
+
         return $resultado;
     }
 
