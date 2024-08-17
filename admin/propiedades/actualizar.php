@@ -11,20 +11,14 @@ use Intervention\Image\ImageManagerStatic as Image;
 require '../../includes/app.php';
 estaAutenticado();
 
-    // Validar la URL por ID válido
-    $id = $_GET['id'];
-    $id = filter_var($id, FILTER_VALIDATE_INT);
- 
-    if(!$id) {
-        header('Location: admin/index.php');
-    }
+// Validar la URL por ID válido
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
 
-    // Obtener los datos de la propiedad
-    $propiedad = Propiedad::find($id);
-
-    // Consultar para obtener los vendedores
-    $query = "SELECT * FROM vendedores";
-    $resultado = mysqli_query($db, $query);
+if (!$id) {
+    header('Location: /admin/index.php');
+    exit;
+}
 
     // Arreglo con mensajes de errores
     $errores = [];
@@ -76,44 +70,7 @@ estaAutenticado();
             $errores[] = "La imagen es muy pesada";
         }
 
-        if(empty($errores)) {
-
-            // Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
-
-            if(!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes);
-            }
-
-            $nombreImagen = '';
-
-            /** SUBIDA DE ARCHIVOS **/
-            if ($imagen['name']) {
-                // Eliminar la imagen previa
-                unlink($carpetaImagenes . $propiedad['imagen']);
-
-                // Generar un nombre único
-                $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
-    
-                // Subir la imagen
-                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-            } else {
-                $nombreImagen = $propiedad['imagen'];
-            }
-
-
-            // Insertar en la base de datos
-            $query = "UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, estacionamiento = {$estacionamiento}, vendedorId = {$vendedorId} WHERE id = {$id}";
-
-            // echo $query;
-
-            $resultado = mysqli_query($db, $query);
-
-            if($resultado) {
-                // Redireccionar al usuario
-                header('Location: /admin/index.php?resultado=2');
-            }
-        }
+        $propiedad->guardar();
     }
 }
 
