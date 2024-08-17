@@ -41,7 +41,19 @@ class Propiedad
         self::$db = $database;
     }
 
-    public function guardar()
+    public function guardar() 
+    {
+        if (isset($this->id)) {
+            // Actualizar
+            $this->actualizar();
+        } else {
+            // Crear un nuevo registro
+            $this->crear();
+        }
+
+    }
+
+    public function crear()
     {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
