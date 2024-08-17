@@ -34,26 +34,7 @@ if (!$id) {
         // Asignar file hacia una variable
         $imagen = $_FILES['imagen'];
 
-        // Validar que los campos no estén vacíos
-        if(!$titulo) {
-            $errores[] = "Debes añadir un título";
-        }
-
-        if(!$precio) {
-            $errores[] = "Debes añadir un precio";
-        }
-
-        if(strlen($descripcion) < 50) {
-            $errores[] = "La descripción es obligatoria y debe tener al menos 50 caracteres";
-        }
-
-        if(!$habitaciones) {
-            $errores[] = "Debes añadir el número de habitaciones";
-        }
-
-        if(!$wc) {
-            $errores[] = "Debes añadir el número de baños";
-        }
+    $propiedad->sincronizar($args);
 
         if(!$estacionamiento) {
             $errores[] = "Debes añadir el número de estacionamientos";
