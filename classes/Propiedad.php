@@ -146,6 +146,16 @@ class Propiedad
         }
     }
 
+    // Elimina un archivo
+    public function borrarImagen()
+    {
+        // Comprobar si la imagen existe
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        if ($existeArchivo) {
+            unlink(CARPETA_IMAGENES . $this->imagen);
+        }
+    }
+
     // Validación
     public static function getErrores()
     {
