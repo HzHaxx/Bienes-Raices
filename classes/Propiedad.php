@@ -92,7 +92,23 @@ class Propiedad
 
         $resultado = self::$db->query($query);
 
-        return $resultado;
+        // Mensaje de éxito
+        if ($resultado) {
+            // Redireccionar al usuario
+            header('Location: /admin?resultado=2');
+        }
+    }
+
+    // Eliminar un registro
+    public function eliminar()
+    {
+        $query = "DELETE FROM propiedades WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            $this->borrarImagen();
+            header('Location: /admin?resultado=3');
+        }
     }
 
     // Identifica y une los atributos de la clase con los valores de la base de datos
@@ -120,12 +136,8 @@ class Propiedad
     public function setImagen($imagen)
     {
         // Elimina la imagen previa
-        if (isset($this->id)) {
-            // Comprobar si la imagen existe
-            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-            if ($existeArchivo) {
-                unlink(CARPETA_IMAGENES . $this->imagen);
-            }
+        if (is_null($this->id)) {
+            $this->borrarImagen();
         }
 
         // Asignar al atributo de imagen el nombre de la imagen
