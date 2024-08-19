@@ -67,7 +67,9 @@ class Propiedad
 
         $resultado = self::$db->query($query);
 
+        // Mensaje de éxito
         if ($resultado) {
+            // Redireccionar al usuario
             header('Location: /admin?resultado=1');
         }
     }
