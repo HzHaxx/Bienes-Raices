@@ -215,7 +215,7 @@ class ActiveRecord
     // Crea un objeto
     protected static function crearObjeto($registro)
     {
-        $objeto = new self;
+        $objeto = new static;
 
         foreach ($registro as $key => $value) {
             if (property_exists($objeto, $key)) {
