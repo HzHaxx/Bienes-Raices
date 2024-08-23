@@ -19,10 +19,17 @@
 
         if ($id) {
 
-            $propiedad = Propiedad::find($id);
+            $tipo = $_POST['tipo'];
 
-            $propiedad->eliminar();
-
+            if (validarTipoContenido($tipo)) {
+                if ($tipo === 'propiedad') {
+                    $propiedad = Propiedad::find($id);
+                    $propiedad->eliminar();
+                } else { 
+                    $vendedor = Vendedor::find($id);
+                    $vendedor->eliminar();
+                }
+            }
         }
     }
 
