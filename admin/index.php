@@ -50,6 +50,8 @@
 
         <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
+        <h2>Propiedades</h2>
+
         <table class="propiedades">
             <thead>
                 <tr>
@@ -71,6 +73,7 @@
                         <td>
                             <form method="POST" class="w-100">
                                 <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
+                                <input type="hidden" name="tipo" value="propiedad">
                                 <input type="submit" class="boton-rojo-block" value="Eliminar">
                             </form>
                             <a href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
