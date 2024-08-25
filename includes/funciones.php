@@ -36,3 +36,25 @@ function validarTipoContenido($tipo): bool {
     $tipos = ['vendedor', 'propiedad'];
     return in_array($tipo, $tipos);
 }
+
+// Muestra los mensajes
+function mostrarNotificacion($codigo) {
+    $mensaje = '';
+
+    switch ($codigo) {
+        case 1:
+            $mensaje = 'Creado Correctamente';
+            break;
+        case 2:
+            $mensaje = 'Actualizado Correctamente';
+            break;
+        case 3:
+            $mensaje = 'Borrado Correctamente';
+            break;
+        default:
+            $mensaje = false;
+            break;
+    }
+
+    return $mensaje;
+}
