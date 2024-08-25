@@ -1,4 +1,7 @@
 <?php 
+    require 'includes/app.php';
+
+    use App\Propiedad;
 
     $id = $_GET['id']; 
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -7,20 +10,7 @@
         header('Location: index.php');
     }
 
-    require 'includes/app.php';
-    $db = conectarDB();
-
-    // Consultar
-    $query = "SELECT * FROM propiedades WHERE id = {$id}";
-
-    // Leer los resultados
-    $resultado = mysqli_query($db, $query);
-
-    if (!$resultado->num_rows) {
-        header('Location: index.php');
-    }
-
-    $propiedad = mysqli_fetch_assoc($resultado);
+    $propiedad = Propiedad::find($id);
 
     incluirTemplate('header');
 ?>
