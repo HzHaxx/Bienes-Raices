@@ -13,7 +13,7 @@ $errores = Vendedor::getErrores();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Crear una nueva instancia
-    $vendedor = new Vendedor($_POST);
+    $vendedor = new Vendedor($_POST['vendedor']);
 
     // Validar que no haya campos vacíos
     $errores = $vendedor->validar();
