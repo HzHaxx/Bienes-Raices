@@ -1,12 +1,7 @@
 <?php
-// Importar la conexión
-$db = conectarDB();
+use App\Propiedad;
 
-// Consultar
-$query = "SELECT * FROM propiedades LIMIT {$limite}";
-
-// Leer los resultados
-$resultado = mysqli_query($db, $query);
+$propiedades = Propiedad::all();
 
 ?>
 
