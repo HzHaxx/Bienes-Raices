@@ -1,21 +1,32 @@
 <?php
 
 require '../../includes/app.php';
-
 use App\Vendedor;
-
 estaAutenticado();
 
-$vendedor = new Vendedor;
+// Validar la URL por ID válido
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if (!$id) {
+    header('Location: /admin');
+}
+
+// Obtener el arreglo del vendedor
+$vendedor = Vendedor::find($id);
 
 // Arreglo con mensajes de errores
 $errores = Vendedor::getErrores();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Crear una nueva instancia
-    $vendedor = new Vendedor($_POST);
+    
+    // Asignar los valores
+    $args = $_POST['vendedor'];
 
-    // Validar que no haya campos vacíos
+    // Sincronizar objeto en memoria con lo que el usuario escribió
+    $vendedor->sincronizar($args);
+
+    // Validación
     $errores = $vendedor->validar();
 
     // Revisar que el arreglo de errores esté vacío
