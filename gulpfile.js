@@ -29,7 +29,7 @@ export function css( done ) { // done es una función que nos permite indicarle 
         .pipe( sass({ 
             outputStyle: 'compressed' // outputStyle es una opción de sass que nos permite comprimir el css
         }).on('error', sass.logError) ) // .on es un método de gulp que nos permite ejecutar una función cuando ocurre un error y sass.logError es una función de sass que nos permite mostrar el error en consola
-        .pipe( dest('./build/css', {sourcemaps: '.'}) ); // dest es una función de gulp que nos permite escribir archivos {sourcemaps: '.'} es una opción que nos permite guardar los sourcemaps en la misma carpeta que el archivo css
+        .pipe( dest('./public/build/css', {sourcemaps: '.'}) ); // dest es una función de gulp que nos permite escribir archivos {sourcemaps: '.'} es una opción que nos permite guardar los sourcemaps en la misma carpeta que el archivo css
     done()
 }
 
@@ -39,14 +39,14 @@ export function js( done ) {
       .pipe(concat('bundle.js')) // aqui concatenamos los archivos js en un solo archivo llamado bundle.js
       .pipe(terser())         // aqui minificamos el archivo js
       .pipe(rename({ suffix: '.min' })) // aqui renombramos el archivo js a bundle.min.js
-      .pipe(dest('./build/js')) // aqui escribimos el archivo js en la carpeta build/js
+      .pipe(dest('./public/build/js')) // aqui escribimos el archivo js en la carpeta build/js
     done()
 }
 
 // * esta función nos permite procesar imágenes lo que significa que las imágenes se comprimen y se convierten a formatos webp y avif
 export async function imagenes(done) { // async permite definir una función asincrona que significa que la función puede esperar a que se resuelva una promesa
     const srcDir = './src/img';
-    const buildDir = './build/img';
+    const buildDir = './public/build/img';
     const images =  await glob('./src/img/**/*') // aqui buscamos todas las imágenes en la carpeta src/img y sus subcarpetas
 
     images.forEach(file => {
