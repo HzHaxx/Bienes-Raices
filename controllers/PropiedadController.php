@@ -3,6 +3,7 @@
 namespace Controllers;
 use MVC\Router;
 use Model\Propiedad;
+use Model\Vendedor;
 
 class PropiedadController
 {
@@ -17,9 +18,30 @@ class PropiedadController
         ]);
     }
 
-    public function crear()
+    public static function crear(Router $router)
     {
-        echo 'Crear';
+        $propiedad = new Propiedad;
+        $vendedores = Vendedor::all();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $propiedad = new Propiedad($_POST['propiedad']);
+
+            // Subida de archivos
+            $imagen = $_FILES['propiedad']['tmp_name']['imagen'];
+            $imagen = basename($_FILES['propiedad']['name']['imagen']);
+            move_uploaded_file($imagen, __DIR__ . "/../public/imagenes/$imagen");
+
+            $resultado = $propiedad->save();
+
+            if ($resultado) {
+                header('Location: /admin?resultado=' . $resultado);
+            }
+        }
+
+        $router->render('propiedades/crear', [
+            'propiedad' => $propiedad,
+            'vendedores' => $vendedores
+        ]);
     }
 
     public function actualizar()
