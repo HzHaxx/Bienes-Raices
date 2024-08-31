@@ -12,6 +12,11 @@ class Router
         $this->rutasGET[$url] = $fn;
     }
 
+    public function post($url, $fn)
+    {
+        $this->rutasPOST[$url] = $fn;
+    }
+
     public function comprobarRutas()
     {
         $urlActual = $_SERVER['PATH_INFO'] ?? '/';
