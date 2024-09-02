@@ -32,10 +32,35 @@ class PropiedadController
         // Ejecutar el código después de que el usuario envía el formulario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Subida de archivos
-            $imagen = $_FILES['propiedad']['tmp_name']['imagen'];
-            $imagen = basename($_FILES['propiedad']['name']['imagen']);
-            move_uploaded_file($imagen, __DIR__ . "/../public/imagenes/$imagen");
+            // Crear una nueva instancia
+            $propiedad = new Propiedad($_POST);
+
+            /** SUBIDA DE ARCHIVOS **/
+
+
+            // Generar un nombre único
+            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+            // Setear la imagen
+            // Realizar un resize a la imagen con intervention image
+            if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+                $propiedad->setImagen($nombreImagen);
+            }
+
+            // Validar
+            $errores = $propiedad->validar();
+
+
+            if (empty($errores)) {
+
+                // Crear carpeta para subir imágenes
+                if (!is_dir(CARPETA_IMAGENES)) {
+                    mkdir(CARPETA_IMAGENES);
+                }
+
+                // Guardar la imagen en el servidor
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
 
                 // Guardar en la base de datos
                 $propiedad->guardar();
