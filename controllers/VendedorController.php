@@ -33,7 +33,7 @@ class VendedorController
         ]);
     }
 
-    public static function actualizar()
+    public static function actualizar(Router $router)
     {
         echo "Actualizar vendedor";
     }
