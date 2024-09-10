@@ -51,9 +51,19 @@ function darkMode() {
 function eventListeners() {
     const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.addEventListener('click', navegacionResponsive);
+
+    // Muestra campos condicionales
+    const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
+    metodoContacto.forEach(input => {
+        input.addEventListener('click', mostrarMetodoContacto);
+    });
 }
 
 function navegacionResponsive() {
     const navegacion = document.querySelector('.navegacion');
     navegacion.classList.toggle('mostrar');
+}
+
+function mostrarMetodoContacto() {
+    console.log('ejecutando...');
 }
