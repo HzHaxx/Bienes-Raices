@@ -64,6 +64,26 @@ function navegacionResponsive() {
     navegacion.classList.toggle('mostrar');
 }
 
-function mostrarMetodoContacto() {
-    console.log('ejecutando...');
+function mostrarMetodoContacto(e) {
+    const contactoDiv = document.querySelector('#contacto');
+
+    if (e.target.value === 'telefono') {
+        contactoDiv.innerHTML = `
+            <label for="telefono">Número Teléfono</label>
+            <input type="tel" id="telefono" name="contacto[telefono]" placeholder="Tu Teléfono">
+
+            <p>Elije la fecha y la hora para que te contactemos</p>
+            
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="contacto[fecha]">
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" min="09:00" max="18:00" name="contacto[hora]">
+        `;
+    } else {
+        contactoDiv.innerHTML = `
+            <label for="email">E-mail</label> 
+            <input type="email" id="email" name="contacto[email]" placeholder="Tu Correo Electrónico">
+        `;
+    }
 }

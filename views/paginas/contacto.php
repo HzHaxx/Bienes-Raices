@@ -1,6 +1,12 @@
 <main class="contenedor">
     <h1>Contacto</h1>
 
+    <?php 
+        if($mensaje) { ?>
+            <p class="alerta exito"><?php echo $mensaje; ?></p>
+        <?php } ?>
+
+
     <picture>
         <source srcset="build/img/destacada3.webp" type="image/webp">
         <source srcset="build/img/destacada3.jpg" type="image/jpeg">
@@ -15,12 +21,6 @@
 
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" placeholder="Tu Nombre" name="contacto[nombre]" required>
-
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" placeholder="Tu Correo" name="contacto[email]" required>
-
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" placeholder="Tu Teléfono" name="contacto[telefono]" required>
 
             <label for="mensaje">Mensaje:</label>
             <textarea id="mensaje" name="contacto[mensaje]" required></textarea>
@@ -53,13 +53,8 @@
                 <input type="radio" id="contactar-email" value="email" name="contacto[contacto]" required>
             </div>
 
-            <p>Si eligió Teléfono, elija la fecha y la hora:</p>
+            <div id="contacto"></div>
 
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="contacto[fecha]">
-
-            <label for="hora">Hora:</label>
-            <input type="time" id="hora" min="09:00" max="18:00" name="contacto[hora]">
         </fieldset>
 
         <input type="submit" value="Enviar" class="boton-verde">
