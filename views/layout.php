@@ -33,10 +33,10 @@
                     <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt="Boton Dark Mode">
 
                     <nav class="navegacion">
-                        <a href="/nosotros.php">Nosotros</a>
-                        <a href="/anuncios.php">Anuncios</a>
-                        <a href="/blog.php">Blog</a>
-                        <a href="/contacto.php">Contacto</a>
+                        <a href="/nosotros">Nosotros</a>
+                        <a href="/anuncios">Anuncios</a>
+                        <a href="/blog">Blog</a>
+                        <a href="/contacto">Contacto</a>
                         <?php if ($auth): ?>
                             <a href="/cerrar-sesion.php">Cerrar Sesión</a>
                         <?php endif; ?>
