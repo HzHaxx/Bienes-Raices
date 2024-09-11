@@ -29,12 +29,11 @@ class LoginController
                         // Autenticar el usuario
                         $auth->autenticar();
 
+                        // Redireccionar
                         header('Location: /admin');
                     } else {
-                        $errores[] = 'El password es incorrecto';
+                        $errores = Admin::getErrores();
                     }
-                } else {
-                    $errores[] = 'El usuario no existe';
                 }
             }
         }
@@ -46,6 +45,10 @@ class LoginController
 
     public static function logout()
     {
-        echo 'Cerrar Sesión';
+        session_start();
+
+        $_SESSION = [];
+
+        header('Location: /');
     }
 }
