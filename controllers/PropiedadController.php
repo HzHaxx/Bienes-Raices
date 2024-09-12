@@ -78,7 +78,7 @@ class PropiedadController
         ]);
     }
 
-    public function actualizar(Router $router)
+    public static function actualizar(Router $router)
     {
         $id = validarORedireccionar('/admin');
         $propiedad = Propiedad::find($id);
@@ -122,7 +122,7 @@ class PropiedadController
         ]);
     }
 
-    public function eliminar()
+    public static function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
