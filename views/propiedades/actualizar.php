@@ -10,8 +10,7 @@
     <a href="/admin" class="boton boton-verde">Volver</a>
 
     <form class="formulario" method="POST" enctype="multipart/form-data">
-        <?php include '../../includes/templates/formulario_propiedades.php'; ?>
-
+        <?php include __DIR__ . '/formulario.php'; ?>
         <input type="submit" value="Actualizar Propiedad" class="boton-verde">
     </form>
 </main>
